@@ -1,17 +1,24 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   {% if title %}
   <title>ProAwards</title>
   {% else %}
   <title>ProAwards - {{ title }}</title>
   {% endif %}
+
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
 <body>
+  {% include 'projects/navbar.html' %}
+
   {% block content %}
   {% endblock %}
 </body>
