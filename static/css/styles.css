@@ -28,7 +28,7 @@ body {
   list-style-type: none;
 }
 .nav ul a:hover{
-  color: #ffff;
+  color: rgb(209, 202, 202);
   transition: .5s;
 }
 .nav .close{
@@ -40,12 +40,32 @@ body {
 }
 .slide a{
   font-size: 35px;
-  color: #ffff;
+  color: red;
 }
 #sidenav{
   padding: 11px;
   transition: .7s;
   width: 100%;
   overflow: hidden;
+}
+.navigation {
+  background: url('/static/images/img3.jpg');
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.logo {
+  color: #ffff;
+  padding: 15px;
+  font-family: 'Righteous', cursive;
+}
+.logo h1 {
+  letter-spacing: 2px;
+  font-size: 3rem;
+} 
+.logo h1 span {
+  color: red;
 }
 
