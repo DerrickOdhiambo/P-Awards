@@ -4,17 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+
+  <title>ProAwards</title>
+
 </head>
 
 <body>
-  <div class="nav-main">
-    <div class="logo">
-      <h1>Pro<span>Awards</span></h1>
-    </div>
-    <div class="nav-items">
+  <div id="sidenav">
+    <span class="slide">
+      <a href="#" onclick="openSlideMenu()"><i class="fas fa-bars"></i></a>
+    </span>
+    <div id="menu" class="nav">
+      <a href="#" class="close" onclick="closeSlideMenu()"><i class="fas fa-times"></i></a>
       <ul>
-        <li><a href="">Login/Register</a></li>
+        <li><a href="">Home</a></li>
+        <li><a href="">Submit Project</a></li>
+        <li><a href="">Profile</a></li>
+        <li><a href="">Register/Login</a></li>
       </ul>
     </div>
 </body>
