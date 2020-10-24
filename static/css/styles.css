@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+body {
+  overflow: hidden;
+}
+.nav{
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #2f3029;
+  opacity: .9;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: .7s;
+}
+.nav a{
+  display: block;
+  padding: 20px;
+  font-size: 23px;
+  text-decoration: none;
+  color: #ffff;
+  font-family: 'Righteous', cursive;
+}
+.nav ul{
+  list-style-type: none;
+}
+.nav ul a:hover{
+  color: #ffff;
+  transition: .5s;
+}
+.nav .close{
+  position: absolute;
+  top: 0;
+  right: 50px;
+  margin-left: 60px;
+  font-size: 30px;
+}
+.slide a{
+  font-size: 35px;
+  color: #ffff;
+}
+#sidenav{
+  padding: 11px;
+  transition: .7s;
+  width: 100%;
+  overflow: hidden;
+}
+
