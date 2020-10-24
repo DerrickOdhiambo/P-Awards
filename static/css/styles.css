@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .nav{
   height: 100%;
