@@ -12,3 +12,8 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+    @classmethod
+    def all_images(cls):
+        project_images = cls.objects.all()
+        return project_images
