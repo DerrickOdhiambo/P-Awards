@@ -2,6 +2,40 @@
 
 {% block content %}
 <div class="container">
-  <h1>ProAwards</h1>
+  <div class="row">
+    {% for image in images %}
+    <div class="col mt-5">
+      <!-- Card -->
+      <div class="card card-cascade wider reverse">
+
+        <!-- Card image -->
+        <div class="view view-cascade overlay zoom">
+          <img class="card-img-top" src="{{ image.project_image.url }}" class="img-fluid" alt="{{ image.title }}">
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <!-- Card content -->
+        <div class="card-body card-body-cascade text-center mb-3">
+
+          <!-- Title -->
+          <h4 class="card-title"><strong>{{ image.title }}</strong></h4>
+          <!-- Subtitle -->
+          <h6 class="font-weight-bold indigo-text py-2">{{ image.project_owner }}</h6>
+          <!-- Text -->
+          <p class="card-text">{{ image.project_description }}</p>
+          <p><small class="text-muted">{{ image.date_posted|date:"M d, Y" }}</small></p>
+
+
+          <a href="{{ image.project_link }}" target="_blank" class="px-2 fa-lg fb-ic"><i class="fas fa-link"></i></a>
+
+        </div>
+
+      </div>
+      <!-- Card -->
+    </div>
+    {% endfor %}
+  </div>
 </div>
 {% endblock %}
