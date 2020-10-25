@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from .models import Project
 
 
 def index(request):
-    return render(request, 'projects/index.html')
+    images = Project.all_images()
+    return render(request, 'projects/index.html', {'images': images})
