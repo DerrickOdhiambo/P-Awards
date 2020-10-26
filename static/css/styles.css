@@ -88,8 +88,20 @@ body {
 .view-cascade:hover .mask {
   display: unset;
   transition: .3s ease-in-out;
+  display: flex;
+  justify-content: space-between;
   background: rgba(0,0,0,0.5);
 }
 .col-md-8 {
   margin: auto;
+}
+.account-img {
+  height: 150px;
+  width: 150px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+.account-img-profile {
+  height: 50px;
+  width: 50px;
 }
