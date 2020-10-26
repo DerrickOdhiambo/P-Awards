@@ -1,0 +1,39 @@
+{% extends 'projects/base.html' %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col mt-5">
+      <!-- Card -->
+      <div class="card card-cascade wider reverse">
+
+        <!-- Card image -->
+        <div class="view view-cascade overlay zoom">
+          <img class="card-img-top" src="{{ object.project_image.url }}" class="img-fluid" alt="{{ object.title }}">
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <!-- Card content -->
+        <div class="card-body card-body-cascade text-center mb-3">
+
+          <!-- Title -->
+          <h4 class="card-title"><strong>{{ object.title }}</strong></h4>
+          <!-- Subtitle -->
+          <h6 class="font-weight-bold indigo-text py-2"><a
+              href="{% url 'user-projects' object.project_owner.username %}">{{ object.project_owner }}</a></h6>
+          <!-- Text -->
+          <p class="card-text">{{ object.project_description }}</p>
+          <p><small class="text-muted">{{ object.date_posted|date:"M d, Y" }}</small></p>
+
+
+          <a href="{{ object.project_link }}" target="_blank" class="px-2 fa-lg fb-ic"><i class="fas fa-link"></i></a>
+
+        </div>
+
+      </div>
+      <!-- Card -->
+    </div>
+  </div>
+</div>
+{% endblock %}

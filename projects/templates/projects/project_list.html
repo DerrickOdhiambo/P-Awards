@@ -1,0 +1,44 @@
+{% extends 'projects/base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    {% for image in images %}
+    <div class="col-md-6 mt-5 mb-5">
+      <!-- Card -->
+      <div class="card card-cascade wider reverse">
+
+        <!-- Card image -->
+        <div class="view view-cascade overlay zoom">
+          <img class="card-img-top" src="{{ image.project_image.url }}" alt="{{ image.title }}">
+          <div class="mask">
+            <div class="icons">
+              <a href="{% url 'project-detail' image.id %}" class="btn btn-danger btn-sm rounded">VOTE</a>
+            </div>
+            <div class="link">
+              <a href="{{ image.project_link }}" target="_blank" class="btn btn-outline-info btn-sm rounded"><i
+                  class="fas fa-external-link-alt"></i></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card content -->
+        <div class="card-body card-body-cascade text-center mb-5">
+
+          <!-- Title -->
+          <h4 class="card-title"><a href="{% url 'project-detail' image.id%}"><strong>{{ image.title }}</strong></a>
+          </h4>
+          <small class="text-muted">By {{ image.project_owner }}</small>
+
+
+
+
+        </div>
+
+      </div>
+      <!-- Card -->
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
