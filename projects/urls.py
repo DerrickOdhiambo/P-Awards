@@ -1,9 +1,15 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
-from django.urls import path
+from django.urls import path, include
 from .views import ProjectListView, ProjectDetailView, ProjectCreateView, UserProjectListView
 from . import views
+from rest_framework import routers
+
+
+router = routers.DefaultRouter()
+router.register('profile', views.ProfileView)
+
 
 urlpatterns = [
     path('', ProjectListView.as_view(), name='homepage'),
@@ -14,6 +20,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='auth/logout.html'), name='logout'),
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
+    path('api/', include(router.urls)),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

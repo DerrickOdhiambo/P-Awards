@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from rest_framework import viewsets
+from .serializers import ProfileSerializer
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView
-from .models import Project
+from .models import Project, Profile
 from .forms import CreateUserForm, RatingForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
 
@@ -99,3 +101,8 @@ def profile(request):
         'profile_update': profile_update,
     }
     return render(request, 'auth/profile.html', context)
+
+
+class ProfileView(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
