@@ -18,10 +18,13 @@
       <div id="menu" class="nav">
         <a href="#" class="close" onclick="closeSlideMenu()"><i class="fas fa-times"></i></a>
         <ul>
-          <li><a href="">Home</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'profile' %}">Profile</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}">Register/Login</a></li>
+          {% endif %}
+          <li><a href="{% url 'homepage' %}">Home</a></li>
           <li><a href="">Submit Project</a></li>
-          <li><a href="">Profile</a></li>
-          <li><a href="">Register/Login</a></li>
         </ul>
       </div>
     </div>
