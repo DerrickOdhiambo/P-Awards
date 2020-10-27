@@ -17,7 +17,6 @@ urlpatterns = [
     path('user/<str:username>/', UserProjectListView.as_view(), name='user-projects'),
     # path('project/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
     path('project/<int:pk>/', views.project_detail, name='project-detail'),
-
     path('project/new/', ProjectCreateView.as_view(), name='project-create'),
     path('login/', auth_views.LoginView.as_view(template_name='auth/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='auth/logout.html'), name='logout'),
