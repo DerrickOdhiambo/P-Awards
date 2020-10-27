@@ -4,14 +4,14 @@
 <div class="container">
   <h2 class="text-center text-secondary mt-3">Featured Projects</h2>
   <div class="row">
-    {% for image in images %}
+    {% for image in projects %}
     <div class="col-md-6 mt-5 mb-5">
       <!-- Card -->
       <div class="card card-cascade wider reverse">
 
         <!-- Card image -->
         <div class="view view-cascade overlay zoom">
-          <img class="card-img-top" src="{{ image.project_image.url }}" alt="{{ image.title }}">
+          <img class="card-img-top" src="{{ image.project_image }}" alt="{{ image.title }}">
           <div class="mask">
             <div class="icons">
               <a href="{% url 'project-detail' image.id %}" class="btn btn-danger btn-sm rounded">VOTE</a>

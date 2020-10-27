@@ -13,7 +13,7 @@ router.register('project', views.ProjectView),
 
 
 urlpatterns = [
-    path('', ProjectListView.as_view(), name='homepage'),
+    # path('', ProjectListView.as_view(), name='homepage'),
     path('user/<str:username>/', UserProjectListView.as_view(), name='user-projects'),
     # path('project/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
     path('project/<int:pk>/', views.project_detail, name='project-detail'),
@@ -23,8 +23,8 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
     path('search/',  SearchListView.as_view(), name='search-users'),
-    path('api/', include(router.urls)),
-    # path('', views.api_query, name='homepage')
+    # path('api/', include(router.urls)),
+    path('', views.api_query, name='homepage')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
