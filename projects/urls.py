@@ -8,7 +8,8 @@ from rest_framework import routers
 
 
 router = routers.DefaultRouter()
-router.register('profile', views.ProfileView)
+router.register('profile', views.ProfileView),
+router.register('project', views.ProjectView),
 
 
 urlpatterns = [
