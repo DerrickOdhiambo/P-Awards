@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
-from .views import ProjectListView, ProjectDetailView, ProjectCreateView, UserProjectListView
+from .views import ProjectListView, ProjectDetailView, ProjectCreateView, UserProjectListView, SearchListView
 from . import views
 from rest_framework import routers
 
@@ -21,6 +21,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='auth/logout.html'), name='logout'),
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
+    path('search/',  SearchListView.as_view(), name='search-users'),
     path('api/', include(router.urls)),
 ]
 if settings.DEBUG:

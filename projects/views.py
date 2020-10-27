@@ -111,3 +111,20 @@ class ProfileView(viewsets.ModelViewSet):
 class ProjectView(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+
+class SearchListView(ListView):
+    model = User
+    template_name = 'projects/search.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        query = self.request.GET.get('q')
+        context['query'] = self.request.GET.get('q')
+        context['projects'] = Project.objects.filter(title__icontains=query)
+        return context
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = User.objects.filter(username__icontains=query)
+        return object_list

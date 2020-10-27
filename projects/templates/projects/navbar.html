@@ -28,6 +28,14 @@
         </ul>
       </div>
     </div>
+    <div class="search">
+      <form action="{% url 'search-users' %}" method="GET">
+        <div class="md-form my-1">
+          {% csrf_token %}
+          <input class="form-control mr-sm-2 text-white" type="text" name="q" placeholder="Search users...">
+        </div>
+      </form>
+    </div>
     <div class="logo">
       <h1>Pro<span>Awards</span>.</h1>
     </div>

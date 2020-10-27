@@ -105,3 +105,9 @@ body {
   height: 50px;
   width: 50px;
 }
+.search {
+  margin: 1rem;
+}
+div input {
+  color: whitesmoke;
+}
