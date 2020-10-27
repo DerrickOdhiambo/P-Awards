@@ -10,8 +10,10 @@ class Project(models.Model):
     project_image = models.ImageField(upload_to='project/')
     project_description = models.TextField()
     project_link = models.CharField(max_length=60)
-    project_owner = models.ForeignKey(
+    user = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True)
+    project_owner = models.CharField(
+        max_length=50, null=True, blank=True)
     date_posted = models.DateTimeField(default=now)
 
     def __str__(self):

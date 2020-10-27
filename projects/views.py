@@ -12,8 +12,6 @@ from .forms import CreateUserForm, RatingForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
 import requests
 
-# Querying the database without the API
-
 
 def index(request):
     images = Project.all_images()
@@ -135,6 +133,7 @@ class SearchListView(ListView):
 
 
 # used the api key to query from the database
+
 def api_query(request):
     projects = requests.get(
         'https://awards26.herokuapp.com/api/project/').json()
