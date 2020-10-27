@@ -17,10 +17,23 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
+    def save_project(self):
+        return self.save()
+
+    @classmethod
+    def get_image_by_id(cls, id):
+        image = cls.objects.get(id=id)
+        return image
+
     @classmethod
     def all_images(cls):
         project_images = cls.objects.all()
         return project_images
+
+    @classmethod
+    def search_by_title(cls, project):
+        projects = cls.objects.filter(title__icontains=project)
+        return projects
 
     def get_absolute_url(self):
         return reverse('project-detail', kwargs={'pk': self.pk})
@@ -34,6 +47,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
+
+    def save_profile(self):
+        return self.save()
 
 
 RATE_CHOICES = [
