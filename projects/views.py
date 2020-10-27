@@ -34,6 +34,7 @@ class UserProjectListView(ListView):
 
 class ProjectDetailView(DetailView):
     model = Project
+    template_name = 'projects/project_detail.html'
 
 
 class ProjectCreateView(LoginRequiredMixin, CreateView):
