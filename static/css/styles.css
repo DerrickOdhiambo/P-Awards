@@ -121,3 +121,14 @@ div input {
 .card-body h4 {
   color: #e13329;
 }
+
+/* media query */
+@media only screen and (max-width: 600px) {
+  .logo h1 {
+    letter-spacing: normal;
+    font-size: 1.5rem;
+  } 
+  .search {
+    margin: none;
+  }
+}
