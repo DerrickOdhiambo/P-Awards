@@ -10,6 +10,9 @@ from django.views.generic import ListView, DetailView, CreateView
 from .models import Project, Profile
 from .forms import CreateUserForm, RatingForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
+import requests
+
+# Querying the database without the API
 
 
 def index(request):
@@ -129,3 +132,17 @@ class SearchListView(ListView):
         query = self.request.GET.get('q')
         object_list = User.objects.filter(username__icontains=query)
         return object_list
+
+
+# used the api key to query from the database
+def api_query(request):
+    projects = requests.get(
+        'https://awards26.herokuapp.com/api/project/').json()
+    return render(request, 'projects/project_list.html', {'projects': projects})
+
+
+def project_detail(request, pk):
+    results = requests.get(
+        f'https://awards26.herokuapp.com/api/project/{pk}').json()
+    print(results)
+    return render(request, 'projects/project_detail.html', {'projects': results})
