@@ -142,5 +142,5 @@ class SearchListView(ListView):
 
 def api_query(request):
     projects = requests.get(
-        'http://127.0.0.1:8000/api/project/').json()
+        'https://awards26.herokuapp.com/api/project/').json()
     return render(request, 'projects/project_list.html', {'projects': projects})
