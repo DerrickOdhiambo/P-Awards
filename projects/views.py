@@ -121,6 +121,13 @@ def projectDetail(request, pk):
     return Response(serializer.data)
 
 
+@api_view(['GET'])
+def profileList(request):
+    profile = Profile.objects.all()
+    serializer = ProjectSerializer(profile, many=True)
+    return Response(serializer.data)
+
+
 class SearchListView(ListView):
     model = User
     template_name = 'projects/search.html'

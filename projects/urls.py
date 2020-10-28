@@ -16,6 +16,7 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('search/',  SearchListView.as_view(), name='search-users'),
     path('api/project/', views.projectList, name='project-list'),
+    path('api/profile/', views.projectList, name='profile-list'),
     path('', views.api_query, name='homepage')
 ]
 if settings.DEBUG:

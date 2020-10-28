@@ -37,8 +37,8 @@ An application for posting projects that can be reviewed and voted upon by users
 
 ## API Endpoints
 
-- https://awards26.herokuapp.com/api/project
-- https://awards26.herokuapp.com/api/profile
+- https://awards26.herokuapp.com/api/project/
+- https://awards26.herokuapp.com/api/profile/
 
 ## Technologies Used
 
