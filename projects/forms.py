@@ -29,7 +29,6 @@ class ProfileUpdateForm(forms.ModelForm):
 
 
 class RatingForm(forms.ModelForm):
-    review = forms.CharField(widget=forms.Textarea(), required=False)
     rate = forms.ChoiceField(choices=RATE_CHOICES,
                              widget=forms.Select(), required=True)
 

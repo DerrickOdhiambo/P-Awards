@@ -10,17 +10,15 @@ class Project(models.Model):
     project_image = models.ImageField(upload_to='project/')
     project_description = models.TextField()
     project_link = models.CharField(max_length=60)
-    user = models.ForeignKey(
+    project_owner = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True)
-    project_owner = models.CharField(
-        max_length=50, null=True, blank=True)
     date_posted = models.DateTimeField(default=now)
 
     def __str__(self):
         return self.title
 
     def save_project(self):
-        return self.save()
+        self.save()
 
     @classmethod
     def get_image_by_id(cls, id):
@@ -51,7 +49,7 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
     def save_profile(self):
-        return self.save()
+        self.save()
 
 
 RATE_CHOICES = [
@@ -71,8 +69,18 @@ RATE_CHOICES = [
 class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     projects = models.ForeignKey(Project, on_delete=models.CASCADE)
-    rate = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
+    design = models.PositiveSmallIntegerField(choices=RATE_CHOICES, null=True)
+    content = models.PositiveSmallIntegerField(choices=RATE_CHOICES, null=True)
+    usability = models.PositiveSmallIntegerField(
+        choices=RATE_CHOICES, null=True)
+    average_rating = models.FloatField(default=0)
     review = models.TextField()
 
     def __str__(self):
         return self.user.username
+
+    @classmethod
+    def get_ratings(cls, id):
+        rating = cls.objects.all()[id]
+        # return rating
+        return [rating]

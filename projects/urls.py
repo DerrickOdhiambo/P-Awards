@@ -7,6 +7,7 @@ from . import views
 
 
 urlpatterns = [
+    path('', ProjectListView.as_view(), name='homepage'),
     path('user/<str:username>/', UserProjectListView.as_view(), name='user-projects'),
     path('project/<int:pk>/', views.view_project, name='project-detail'),
     path('project/new/', ProjectCreateView.as_view(), name='project-create'),
@@ -17,7 +18,7 @@ urlpatterns = [
     path('search/',  SearchListView.as_view(), name='search-users'),
     path('api/project/', views.projectList, name='project-list'),
     path('api/profile/', views.projectList, name='profile-list'),
-    path('', views.api_query, name='homepage')
+    # path('', views.api_query, name='homepage')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

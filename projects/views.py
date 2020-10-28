@@ -63,7 +63,6 @@ def Rate(request, project_id):
             return HttpResponseRedirect(reverse('project-detail', args=[project_id]))
     else:
         form = RatingForm()
-    template = loader.get_template('projects/project_list.html')
     context = {
         'project': project,
         'form': form,
