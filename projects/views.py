@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from .serializers import ProfileSerializer, ProjectSerializer
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -11,6 +12,7 @@ from .models import Project, Profile
 from .forms import CreateUserForm, RatingForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
 import requests
+from django.template import loader
 
 
 def index(request):
@@ -33,9 +35,9 @@ class UserProjectListView(ListView):
         return Project.objects.filter(project_owner=user).order_by('-date_posted')
 
 
-class ProjectDetailView(DetailView):
-    model = Project
-    template_name = 'projects/project_detail.html'
+def view_project(request, pk):
+    project = Project.get_image_by_id(id=pk)
+    return render(request, 'projects/project_detail.html', {'project': project})
 
 
 class ProjectCreateView(LoginRequiredMixin, CreateView):
@@ -105,14 +107,18 @@ def profile(request):
     return render(request, 'auth/profile.html', context)
 
 
-class ProfileView(viewsets.ModelViewSet):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
+@api_view(['GET'])
+def projectList(request):
+    project = Project.objects.all()
+    serializer = ProjectSerializer(project, many=True)
+    return Response(serializer.data)
 
 
-class ProjectView(viewsets.ModelViewSet):
-    queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
+@api_view(['GET'])
+def projectDetail(request, pk):
+    project = Project.objects.get(id=pk)
+    serializer = ProjectSerializer(project, many=False)
+    return Response(serializer.data)
 
 
 class SearchListView(ListView):
@@ -136,12 +142,5 @@ class SearchListView(ListView):
 
 def api_query(request):
     projects = requests.get(
-        'https://awards26.herokuapp.com/api/project/').json()
+        'http://127.0.0.1:8000/api/project/').json()
     return render(request, 'projects/project_list.html', {'projects': projects})
-
-
-def project_detail(request, pk):
-    results = requests.get(
-        f'https://awards26.herokuapp.com/api/project/{pk}').json()
-    print(results)
-    return render(request, 'projects/project_detail.html', {'projects': results})
