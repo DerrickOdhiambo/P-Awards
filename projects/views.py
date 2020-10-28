@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView
-from .models import Project, Profile
+from .models import Project, Profile, Rating
 from .forms import CreateUserForm, RatingForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
 import requests
@@ -37,7 +37,50 @@ class UserProjectListView(ListView):
 
 def view_project(request, pk):
     project = Project.get_image_by_id(id=pk)
-    return render(request, 'projects/project_detail.html', {'project': project})
+    ratings = Rating.objects.filter(user=request.user, pk=pk).first()
+    rating_status = None
+    if ratings is None:
+        rating_status = False
+    else:
+        rating_status = True
+    if request.method == 'POST':
+        form = RatingForm(request.POST)
+        if form.is_valid():
+            rate = form.save(commit=False)
+            print(rate)
+            rate.user = request.user
+            rate.projects = project
+            rate.save()
+            project_ratings = Rating.objects.filter(pk=pk)
+
+            design_ratings = [d.design for d in project_ratings]
+            design_average = sum(design_ratings) / len(design_ratings)
+
+            usability_ratings = [us.usability for us in project_ratings]
+            usability_average = sum(usability_ratings) / len(usability_ratings)
+
+            content_ratings = [content.content for content in project_ratings]
+            content_average = sum(content_ratings) / len(content_ratings)
+
+            score = round(
+                (design_average + usability_average + content_average) / 3, 2)
+            print(score)
+            rate.design = round(design_average, 2)
+            rate.usability = round(usability_average, 2)
+            rate.content = round(content_average, 2)
+            rate.average_rating = round(score, 2)
+            rate.save()
+            return HttpResponseRedirect(request.path_info)
+    else:
+        form = RatingForm()
+    context = {
+        'project': project,
+        'form': form,
+        'rating_status': rating_status,
+        'ratings': ratings
+
+    }
+    return render(request, 'projects/project_detail.html', context)
 
 
 class ProjectCreateView(LoginRequiredMixin, CreateView):

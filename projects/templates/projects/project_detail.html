@@ -1,4 +1,6 @@
 {% extends 'projects/base.html' %}
+{% load crispy_forms_tags %}
+
 {% block content %}
 <div class="container">
   <div class="row">
@@ -17,6 +19,7 @@
 
         <!-- Card content -->
         <div class="card-body card-body-cascade text-center mb-3">
+          <button type="submit" class="rounded-circle">{{ ratings.average_rating }}</button>
 
           <!-- Title -->
           <h4 class="card-title"><strong>{{ project.title }}</strong></h4>
@@ -27,7 +30,40 @@
           <p><small class="text-muted">{{ project.date_posted|date:"M d, Y" }}</small></p>
 
 
-          <a href="{{ project.project_link }}" target="_blank" class="px-2 fa-lg fb-ic"><i class="fas fa-link"></i></a>
+          <a href="{{ project.project_link }}" target="_blank" class="px-2 fa-lg fb-ic text-danger"><i
+              class="fas fa-link"></i></a>
+
+          <a class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">Rate</a>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalCenterTitle">Rate Project</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="card-footer">
+                    <form action="" method="post">
+                      {% csrf_token %}
+                      {{ form|crispy }}
+                      <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-sm">RATE</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
 
         </div>
 

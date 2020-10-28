@@ -29,9 +29,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
 
 class RatingForm(forms.ModelForm):
-    rate = forms.ChoiceField(choices=RATE_CHOICES,
-                             widget=forms.Select(), required=True)
 
     class Meta:
         model = Rating
-        fields = ['rate', 'review']
+        fields = ['design', 'content', 'usability']

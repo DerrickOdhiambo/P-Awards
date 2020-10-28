@@ -68,7 +68,8 @@ RATE_CHOICES = [
 
 class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    projects = models.ForeignKey(Project, on_delete=models.CASCADE)
+    projects = models.ForeignKey(
+        Project, on_delete=models.CASCADE, related_name='project_ratings')
     design = models.PositiveSmallIntegerField(choices=RATE_CHOICES, null=True)
     content = models.PositiveSmallIntegerField(choices=RATE_CHOICES, null=True)
     usability = models.PositiveSmallIntegerField(
@@ -77,7 +78,7 @@ class Rating(models.Model):
     review = models.TextField()
 
     def __str__(self):
-        return self.user.username
+        return str(self.id)
 
     @classmethod
     def get_ratings(cls, id):
