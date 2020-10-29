@@ -10,6 +10,15 @@ An application for posting projects that can be reviewed and voted upon by users
 
 - [ProAwards](https://awards26.herokuapp.com/)
 
+## User Stories
+
+- View posted projects and their details
+- Post a project to be rated/reviewed
+- Rate/ review other users' projects
+- Search for projects 
+- View projects overall score
+- View my profile page
+
 ## Installation
 
 ### Requirements
@@ -47,7 +56,7 @@ An application for posting projects that can be reviewed and voted upon by users
 
 ## Known bugs
 
-- The project-detail page redirects to an API endpoint.
+- The rating system doesn not work as expected.
 
 ## Contact Information
 
