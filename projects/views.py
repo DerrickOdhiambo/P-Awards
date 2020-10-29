@@ -37,7 +37,7 @@ class UserProjectListView(ListView):
 
 def view_project(request, pk):
     project = Project.get_image_by_id(id=pk)
-    ratings = Rating.objects.filter(user=request.user, pk=pk).first()
+    ratings = Rating.objects.filter(pk=pk).first()
     rating_status = None
     if ratings is None:
         rating_status = False
