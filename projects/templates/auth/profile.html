@@ -6,7 +6,7 @@
   <div class="card">
     <div class="card-body">
       <img class="rounded-circle account-img" src="{{ user.profile.profile_picture.url }}">
-      <a href="{% url 'logout' %}" class="btn btn-sm btn-otline ml-4">Logout</a>
+      <!-- <a href="{% url 'logout' %}" class="btn btn-sm btn-otline ml-4">Logout</a> -->
       <h3 class="account-heading">{{ user.username }}</h3>
       <p><small>{{ user.email }}</small></p>
       <p>{{ user.profile.user_bio }}</p>

@@ -35,6 +35,7 @@ class UserProjectListView(ListView):
         return Project.objects.filter(project_owner=user).order_by('-date_posted')
 
 
+@login_required
 def view_project(request, pk):
     project = Project.get_image_by_id(id=pk)
     ratings = Rating.objects.filter(pk=pk).first()

@@ -10,36 +10,61 @@
 </head>
 
 <body>
-  <div class="navigation d-flex">
-    <div id="sidenav">
-      <span class="slide">
-        <a href="#" onclick="openSlideMenu()"><i class="fas fa-bars"></i></a>
-      </span>
-      <div id="menu" class="nav">
-        <a href="#" class="close" onclick="closeSlideMenu()"><i class="fas fa-times"></i></a>
-        <ul>
-          {% if user.is_authenticated %}
-          <li><a href="{% url 'profile' %}">Profile</a></li>
-          {% else %}
-          <li><a href="{% url 'login' %}">Register/Login</a></li>
-          {% endif %}
-          <li><a href="{% url 'homepage' %}">Home</a></li>
-          <li><a href="{% url 'project-create' %}">Submit Project</a></li>
+  <div class="navigation">
+    <!--Navbar -->
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark light-color">
+      <a class="navbar-brand logo" href="{% url 'homepage' %}}">
+        <h1>Pro<span>Awards</span>.</h1>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+        aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+        <form action="{% url 'search-users' %}" class="form-inline" method="GET">
+          <div class="md-form my-1">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2 text-white" type="text" name="q" placeholder="Search users...">
+          </div>
+        </form>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-warning" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user"></i> {{ user.username }}</a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+              <a class="dropdown-item" href="{% url 'profile' %}">My account</a>
+              <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+            </div>
+          </li>
         </ul>
       </div>
-    </div>
-    <div class="search">
-      <form action="{% url 'search-users' %}" method="GET">
-        <div class="md-form my-1">
-          {% csrf_token %}
-          <input class="form-control mr-sm-2 text-white" type="text" name="q" placeholder="Search users...">
+    </nav>
+    <!--/.Navbar -->
+    <div class="upper-nav">
+      <div class="search">
+
+      </div>
+      <div id="sidenav">
+        <span class="slide">
+          <a href="#" onclick="openSlideMenu()"><i class="fas fa-bars"></i></a>
+        </span>
+        <div id="menu" class="nav">
+          <a href="#" class="close" onclick="closeSlideMenu()"><i class="fas fa-times"></i></a>
+          <ul>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}">{{ user.username }} Account</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Register/Login</a></li>
+            {% endif %}
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li><a href="{% url 'project-create' %}">Submit Project</a></li>
+          </ul>
         </div>
-      </form>
-    </div>
-    <div class="logo">
-      <h1>Pro<span>Awards</span>.</h1>
+      </div>
     </div>
   </div>
+
 </body>
 
 </html>
