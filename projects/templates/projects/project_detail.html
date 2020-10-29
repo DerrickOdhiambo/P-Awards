@@ -30,7 +30,8 @@
           <p><small class="text-muted">{{ project.date_posted|date:"M d, Y" }}</small></p>
 
 
-          <a href="{{ project.project_link }}" target="_blank" class="px-2 fa-lg fb-ic text-danger"><i
+          <a href="{{ project.project_link }}" target="_blank" type="button" class="px-2 fa-lg fb-ic text-danger"
+            class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Go to project"><i
               class="fas fa-link"></i></a>
 
           <a class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">Rate</a>
